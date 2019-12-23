@@ -3,35 +3,44 @@
 module Permitions
   def create_user(_name)
     self.user = User.new(_name)
-    puts "User: '#{user.name}' created!"
+    puts "'#{user.name}' created!"
   end
 
-  def create_role(_name)
-    user.role = Role.new(_name)
-    user.role_name = user.role.name
-    puts "Role '#{_name}' created!"
+  def add_role(_name)
+    user.roles << Role.new(_name)
+    puts "Added '#{_name}' role to '#{user.name}'!"
   end
 
-  def grant_permition_to_role(_permition)
-    user.role.permitions << _permition
-    puts "Added permition: '#{_permition}' to the #{user.role.name}"
+  def grant_permition_to_role(_name, _permition)
+    user.roles.each do |r|
+      if r.name == _name
+        r.permitions << _permition
+        puts "Added '#{_permition}' permition to '#{r.name}'"
+      end
+    end
   end
 
-  def check_permition_presence(_permition)
-    user.role.permitions.include?(_permition) ? true : false
+  def check_role_permition_presence(_permition)
+    user.roles.each do |r|
+      puts "Permition '#{_permition}' for role, presence: #{r.permitions.include?(_permition)}"
+    end
   end
 
   def grant_permition_to_user(_permition)
     user.permitions << _permition
-    puts "Added permition: '#{user.permitions.join}' to #{user.name}"
+    puts "Added '#{user.permitions.join}' permition to '#{user.name}'"
+  end
+
+  def check_user_permition_presence(_permition)
+    puts "Permition '#{_permition}' for user, presence: #{user.permitions.include?(_permition)}"
   end
 
   def has_role_permitions?
-    user.role.permitions.empty? ? false : true
+    puts "Role permitions: #{user.roles.any?}"
   end
 
   def has_user_permitions?
-    user.permitions.empty? ? false : true
+    puts "User permitions: #{user.permitions.any?}"
   end
 end
 
@@ -44,8 +53,7 @@ class Role
 end
 
 class User
-  attr_reader :id
-  attr_accessor :name, :role, :role_name, :permitions
+  attr_accessor :name, :roles, :permitions
   def initialize(name)
     @name = name
     @permitions = []
@@ -60,11 +68,17 @@ end
 
 caller = Caller.new
 caller.create_user('John Travolta')
-caller.create_role('Admin')
+caller.add_role('admin')
+caller.add_role('user')
+
 permition = 'reboot the server'
-caller.grant_permition_to_role(permition)
-puts caller.check_permition_presence(permition)
-permition2 = 'write to a file'
-caller.grant_permition_to_user(permition2)
-puts caller.has_role_permitions?
-puts caller.has_user_permitions?
+caller.grant_permition_to_role('admin', permition)
+caller.grant_permition_to_role('user', permition)
+caller.check_role_permition_presence(permition)
+
+permition_2 = 'creating files'
+caller.grant_permition_to_user(permition_2)
+caller.check_user_permition_presence(permition_2)
+
+caller.has_role_permitions?
+caller.has_user_permitions?
