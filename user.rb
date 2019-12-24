@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class User
-  attr_accessor :name, :roles, :permitions
+  attr_accessor :name, :roles, :permissions
   def initialize(name)
     @name = name
-    @permitions = []
+    @permissions = []
     @roles = []
   end
 end

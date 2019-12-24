@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Role
-  attr_accessor :name, :permitions
+  attr_accessor :name, :permissions
   def initialize(_name)
     @name = _name
-    @permitions = []
+    @permissions = []
   end
 end

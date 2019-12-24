@@ -18,13 +18,13 @@ caller.create_user(user_name)
 caller.add_role_to_user(user_name, 'admin')
 caller.add_role_to_user(user_name, 'user')
 
-permition = 'reboot the server'
-caller.grant_permition_to_role('admin', permition)
-caller.check_role_permition_presence(permition)
+permission = 'reboot the server'
+caller.grant_permission_to_role('admin', permission)
+caller.check_role_permission_presence(permission)
 
-permition_2 = 'creating files'
-caller.grant_permition_to_user(user_name, permition_2)
-caller.check_user_permition_presence(permition_2)
+permission_2 = 'creating files'
+caller.grant_permission_to_user(user_name, permission_2)
+caller.check_user_permission_presence(permission_2)
 
-caller.has_role_permitions?
-caller.has_user_permitions?
+caller.has_role_permissions?
+caller.has_user_permissions?
