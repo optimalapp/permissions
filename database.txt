@@ -1,18 +1,23 @@
 Table User {
-		Id,
-				Name
+		id,
+				name
 }
 
 Table Role {
-		Id,
+		id,
+				name
+}
+
+Table Roles_Users {
+		id,
 				user_id,
-				Name,
-				Permission
+				role_id
+
 }
 
 Table Permission {
-		Id,
+		id,
 				user_id,
 				role_id,
-				Permission
+				permission_type
 }
