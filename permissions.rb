@@ -16,7 +16,7 @@ module Permissions
     users.each do |user|
       user.roles.each do |r|
         if r.name == _role
-          r.permissions << _permission
+          r.permissions << Permission.new(_permission)
           puts "Added '#{_permission}' permission to '#{_role}'"
         end
       end
@@ -33,8 +33,8 @@ module Permissions
 
   def grant_permission_to_user(_name, _permission)
     user = users.find { |n| n.name == _name }
-    user.permissions << _permission
-    puts "Added '#{user.permissions.join}' permission to '#{user.name}'"
+    user.permissions << Permission.new(_permission)
+    puts "Added '#{_permission}' permission to '#{user.name}'"
   end
 
   def check_user_permission_presence(_permission)

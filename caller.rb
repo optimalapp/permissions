@@ -3,7 +3,7 @@
 require_relative 'permissions'
 require_relative 'role'
 require_relative 'user'
-
+require_relative 'permission'
 class Caller
   include Permissions
   attr_accessor :users
