@@ -1,0 +1,18 @@
+Table User {
+		Id,
+				Name
+}
+
+Table Role {
+		Id,
+				user_id,
+				Name,
+				Permission
+}
+
+Table Permission {
+		Id,
+				user_id,
+				role_id,
+				Permission
+}
