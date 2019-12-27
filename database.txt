@@ -1,23 +1,25 @@
-Table User {
+TABLE user {
 		id,
-				name
+		name,
+		email,
+		password
 }
 
-Table Role {
+TABLE role {
 		id,
-				name
+		name
 }
 
-Table Roles_Users {
+TABLE roles_users {
 		id,
-				user_id,
-				role_id
+		user_id,
+		role_id
 
 }
 
-Table Permission {
+TABLE permission {
 		id,
-				user_id,
-				role_id,
-				permission_type
+		user_id,
+		role_id,
+		permission_type
 }
